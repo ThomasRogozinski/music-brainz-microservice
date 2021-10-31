@@ -1,0 +1,40 @@
+openapi: 3.0.0
+info:
+  description: REST API which acts as a wrapper around Music Brainz API
+  title: Music API
+  version: 0.1.0
+servers:
+- url: /
+paths:
+  /music-api/artist:
+    post:
+      description: retrieves a list of artists or list of album releases if only one
+        artist matched
+      operationId: music_api_artist_post
+      requestBody:
+        content:
+          application/json:
+            example:
+              artist:
+                name: Pink Floyd
+                id: 83d91898-7763-47d7-b03b-b92132375c47
+            schema:
+              type: object
+        description: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: object
+        "400":
+          description: Invalid Request
+        "500":
+          description: Internal Server Error
+      summary: retrieves a list of artists or list of album releases if only one artist
+        matched
+      x-openapi-router-controller: openapi_server.controllers.default_controller
+components:
+  schemas: {}
